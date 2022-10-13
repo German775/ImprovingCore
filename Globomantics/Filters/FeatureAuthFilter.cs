@@ -1,24 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Globomantics.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
 
 namespace Globomantics.Filters
 {
-    public class FeatureAuthFilter : Attribute, IAuthorizationFilter
+    public class FeatureAuthFilter : IAuthorizationFilter
     {
-        public string FeatureName { get; set; }
+        private IFeatureService _featureService;
+        private string _featureName;
 
-        private Dictionary<string, bool> FeatureStatus = new Dictionary<string, bool>
+        public FeatureAuthFilter(IFeatureService featureService, string featureName)
         {
-            { "Loan", false },
-            { "Insurance", true },
-            { "Resource", true }
-        };
+            _featureService = featureService;
+            _featureName = featureName;
+        }
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            if (!FeatureStatus[FeatureName])
+            if (!_featureService.IsFeatureActive(_featureName))
             {
                 context.Result = new RedirectToActionResult("Index", "Home", null);
             }
