@@ -35,6 +35,7 @@ namespace Globomantics
             services.AddTransient<IFeatureService, FeatureService>();
             services.AddTransient<IRateService, RateService>();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.Configure<IConfiguration>(Configuration);
             services.Configure<RazorViewEngineOptions>(
                 options => options.ViewLocationExpanders.Add(new ThemeExpander())
             );
