@@ -23,7 +23,15 @@ namespace Globomantics.Controllers
 
         [HttpGet]
         [Route("mortgage")]
+        [Route("{version:versionCheck(1)}/mortgage")]
         public IActionResult GetMortgageRates()
+        {
+            return Ok(rateService.GetMortgageRates());
+        }
+
+        [HttpGet]
+        [Route("{version:versionCheck(2)}/mortgage")]
+        public IActionResult GetMortgageRatesV2()
         {
             return Ok(rateService.GetMortgageRates());
         }
