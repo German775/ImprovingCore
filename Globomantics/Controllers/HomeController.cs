@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Globomantics.Models;
 using Globomantics.Services;
 using Globomantics.Core.Models;
+using Globomantics.Constraints;
 
 namespace Globomantics.Controllers
 {
@@ -19,6 +20,7 @@ namespace Globomantics.Controllers
             this.rateService = rateService;
         }
 
+        [Route("")]
         public IActionResult Index()
         {
             /*
@@ -30,6 +32,13 @@ namespace Globomantics.Controllers
 
             return View(homeData);
             */
+            return View();
+        }
+
+        [MobileSelector]
+        [Route("")]
+        public IActionResult MobileIndex()
+        {
             return View();
         }
 
