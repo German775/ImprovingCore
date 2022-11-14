@@ -11,14 +11,14 @@ using Globomantics.Conventions;
 
 namespace Globomantics.Controllers
 {
-    [ControllerVersion(Version = 1)]
+    [ControllerVersion(Version = 2)]
     [Route("api/Rates")]
     [RateExceptionFilter]
-    public class RatesController : Controller
+    public class RatesV2Controller : Controller
     {
         private IRateService rateService;
 
-        public RatesController(IRateService rateService)
+        public RatesV2Controller(IRateService rateService)
         {
             this.rateService = rateService;
         }
