@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Globomantics.Constraints;
+using Globomantics.Conventions;
 using Globomantics.Filters;
 using Globomantics.Services;
 using Globomantics.Theme;
@@ -31,6 +32,7 @@ namespace Globomantics
             services.AddMvc(options => 
             {
                 options.Filters.Add(typeof(ModelValidationFilter));
+                options.Conventions.Add(new APIConvention());
             });
             services.AddSingleton<ILoanService, LoanService>();
             services.AddTransient<IQuoteService, QuoteService>();
