@@ -74,8 +74,6 @@ namespace Globomantics
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseMiddleware<BasicAuthMiddleware>();
-            
             app.UseStaticFiles();
 
             app.UseSession();
