@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Globomantics.Constraints;
 using Globomantics.Conventions;
 using Globomantics.Filters;
+using Globomantics.Middleware;
 using Globomantics.Services;
 using Globomantics.Theme;
 using Microsoft.AspNetCore.Builder;
@@ -72,6 +74,8 @@ namespace Globomantics
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseMiddleware<BasicAuthMiddleware>();
+            
             app.UseStaticFiles();
 
             app.UseSession();
